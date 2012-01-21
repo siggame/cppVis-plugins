@@ -1,0 +1,24 @@
+#!/bin/bash
+cd ../../codegen
+
+python main.py templates
+
+cp -R output/visualizer/* ../visualizer/botnet/parser
+
+pwd
+
+cd ../visualizer/botnet/parser/sexp
+make clean
+make
+if [ "$?" -ne "0" ]; then
+  exit 1
+fi
+cd ../../
+
+make clean
+qmake
+make clean
+make
+if [ "$?" -ne "0" ]; then
+  exit 1
+fi
