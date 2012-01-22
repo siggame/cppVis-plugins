@@ -8,7 +8,8 @@ TARGET = lightRevelation
 SOURCES = *.cpp
 HEADERS += *.h
 
-CONFIG += debug plugin
+CONFIG += debug plugin 
+QT += opengl
 debug:DEFINES += __DEBUG__
 
 DESTDIR = ../plugins/

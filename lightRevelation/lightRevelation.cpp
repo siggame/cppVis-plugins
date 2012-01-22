@@ -19,6 +19,7 @@ namespace visualizer
     LogRegex lr;
     lr.regex = "\x89PNG";
     lr.startSize = 40;
+    lr.giveFilename = true;
 
     return lr;
   } // LogRegex LightRevelation::logFileInfo()
