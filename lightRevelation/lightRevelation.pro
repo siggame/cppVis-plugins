@@ -10,5 +10,6 @@ HEADERS += *.h
 
 CONFIG += debug plugin
 debug:DEFINES += __DEBUG__
+QT+= opengl
 
 DESTDIR = ../plugins/

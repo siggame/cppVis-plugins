@@ -14,6 +14,8 @@ namespace visualizer
   {
   } // LightRevelation::~LightRevelation()
 
+  // used to figure out whether the game log is a LightRevelation one
+  // or not
   LogRegex LightRevelation::logFileInfo()
   {
     LogRegex lr;
@@ -25,6 +27,7 @@ namespace visualizer
 
   void LightRevelation::loadGamelog( std::string toBeLalalaloaded )
   {
+    cout << toBeLalalaloaded << endl;
     cout << "Load Bloom Gamelog" << endl;
 
     resourceManager->loadTexture( toBeLalalaloaded, "visualExplosion" );
