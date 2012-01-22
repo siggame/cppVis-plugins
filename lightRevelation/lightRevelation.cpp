@@ -18,19 +18,22 @@ namespace visualizer
   // or not
   LogRegex LightRevelation::logFileInfo()
   {
+    // Regular expression used for the checking
     LogRegex lr;
     lr.regex = "\x89PNG";
+    // Number of characters at the beginning of gameLogFile to check
+    // with lr before giving up
     lr.startSize = 40;
 
     return lr;
   } // LogRegex LightRevelation::logFileInfo()
 
-  void LightRevelation::loadGamelog( std::string toBeLalalaloaded )
+  void LightRevelation::loadGamelog( std::string gameLogFile )
   {
-    cout << toBeLalalaloaded << endl;
+    cout << gameLogFile << endl;
     cout << "Load Bloom Gamelog" << endl;
 
-    resourceManager->loadTexture( toBeLalalaloaded, "visualExplosion" );
+    resourceManager->loadTexture( gameLogFile, "visualExplosion" );
     Frame turn;
     image *i = new image( renderer );
     i->addKeyFrame( new StartAnim );
