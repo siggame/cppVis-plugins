@@ -34,6 +34,8 @@ namespace visualizer
     cout << gameLogFile << endl;
     cout << "Load Bloom Gamelog" << endl;
 
+    renderer->setCamera( 0, 0, 1024, 1024 );
+    renderer->setUnitSize( 1024, 1024 );
     resourceManager->loadTexture( gameLogFile, "visualExplosion" );
     Frame turn;
     image *i = new image( renderer );
