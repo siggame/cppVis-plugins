@@ -18,6 +18,20 @@ namespace visualizer
 
   };
 
+  struct textImage: public Animatable
+  {
+    textImage( IRenderer *render ) : Animatable( render )
+    {}
+
+    string line;
+    string fontName;
+
+    AnimData* getData()
+    {
+      return 0;
+    }
+  };
+
 } // visualizer
 
 #endif // LIGHT_REVELATION_ANIMATABLE_H

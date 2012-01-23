@@ -31,17 +31,27 @@ namespace visualizer
 
   void LightRevelation::loadGamelog( std::string gameLogFile )
   {
-    cout << gameLogFile << endl;
-    cout << "Load Bloom Gamelog" << endl;
+    cout << "Loading Gamelog: " << gameLogFile << endl;
 
-    renderer->setCamera( 0, 0, 1024, 1024 );
-    renderer->setUnitSize( 1024, 1024 );
-    resourceManager->loadTexture( gameLogFile, "visualExplosion" );
+    renderer->setGridDimensions(1, 1);
+    resourceManager->loadResourceFile( "./plugins/lightRevelation/textures.r" );
+    //resourceManager->loadTexture( gameLogFile, "visualExplosion" );
     Frame turn;
     image *i = new image( renderer );
     i->addKeyFrame( new StartAnim );
     i->addKeyFrame( new DrawImage( i ) );
     turn.addAnimatable( i );
+
+    // Testing text rendering
+    /*
+    textImage *testText = new textImage( renderer);
+    testTest->line = "This is not a test or an SOS.";
+    testTest->fontName = "
+    testText->addKeyFrame( new StartAnim );
+    testText->addKeyFrame( new DrawTextImage );
+    turn.addAnimatable( testText );
+    */
+
     addFrame( turn );
 
     timeManager->setNumTurns( 1 );

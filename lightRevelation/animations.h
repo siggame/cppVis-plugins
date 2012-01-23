@@ -48,6 +48,29 @@ namespace visualizer
 
   };
 
+  struct DrawTextImage: public Anim
+  {
+    DrawTextImage( textImage *t )
+    {
+      m_textImage = t;
+    }
+
+    void animate( const float& t, AnimData* d);
+    
+    float controlDuration() const
+    {
+      return 0;
+    }
+
+    float totalDuration() const
+    {
+      return 0;
+    }
+
+    private:
+      textImage* m_textImage;
+
+  };
 }
 
 #endif // ANIMATION_H
