@@ -11,7 +11,7 @@ namespace visualizer
     image &i = *m_image;
  
     i.renderer().setColor( Color( 1, 1, 1 ) );
-    i.renderer().drawTexturedQuad( 0, 0, 40, 40, "visualExplosion" );
+    i.renderer().drawTexturedQuad( 0, 0, 1, 1, "visualExplosion" );
 
   }
 
