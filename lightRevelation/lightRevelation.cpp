@@ -33,24 +33,23 @@ namespace visualizer
   {
     cout << "Loading Gamelog: " << gameLogFile << endl;
 
-    renderer->setGridDimensions(1, 1);
+    renderer->setGridDimensions( 2, 2 );
     resourceManager->loadResourceFile( "./plugins/lightRevelation/textures.r" );
-    //resourceManager->loadTexture( gameLogFile, "visualExplosion" );
+    resourceManager->loadTexture( gameLogFile, "bird" );
     Frame turn;
+
+    // Testing image rendering
     image *i = new image( renderer );
     i->addKeyFrame( new StartAnim );
     i->addKeyFrame( new DrawImage( i ) );
     turn.addAnimatable( i );
 
     // Testing text rendering
-    /*
-    textImage *testText = new textImage( renderer);
-    testTest->line = "This is not a test or an SOS.";
-    testTest->fontName = "
+    textImage *testText = new textImage( renderer );
+    testText->line = "This is not a test or an SOS.";
     testText->addKeyFrame( new StartAnim );
-    testText->addKeyFrame( new DrawTextImage );
+    testText->addKeyFrame( new DrawTextImage( testText ) );
     turn.addAnimatable( testText );
-    */
 
     addFrame( turn );
 

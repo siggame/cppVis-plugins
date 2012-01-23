@@ -20,8 +20,7 @@ namespace visualizer
     textImage &t = *m_textImage;
  
     t.renderer().setColor( Color( 1, 1, 1 ) );
-    t.renderer().drawText( 0, 0, "mainFont", t.line );
-
+    t.renderer().drawText( 0, 0, "mainFont", t.line, .2f);
   }
 
 }
