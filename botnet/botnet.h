@@ -12,6 +12,17 @@
 namespace visualizer
 {
 
+  struct Coord
+  {
+    Coord( const float& rx, const float& ry )
+    {
+      x = rx;
+      y = ry;
+    }
+
+    float x, y;
+  };
+
   class BotNet: public QThread, public IGame
   {
     Q_OBJECT;
