@@ -33,9 +33,6 @@ namespace visualizer
 
   struct moveBoard: public Animatable
   {
-    moveBoard( IRenderer *renderer ) : Animatable( renderer )
-    {}
-
     float offst;
 
     AnimData* getData()
@@ -46,7 +43,7 @@ namespace visualizer
 
   struct virus: public Animatable
   {
-    virus( IRenderer *renderer ) : Animatable( renderer )
+    virus() 
     { owner = level = movesLeft = id = x = y = 0; pixels = NULL; }
 
     int id;
@@ -69,7 +66,7 @@ namespace visualizer
 
   struct talker: public Animatable
   {
-    talker( IRenderer *renderer ) : Animatable( renderer )
+    talker() 
     { player = 0; }
 
     AnimData* getData()
@@ -82,7 +79,7 @@ namespace visualizer
 
   struct base: public Animatable
   {
-    base( IRenderer *renderer ) : Animatable( renderer )
+    base() 
     { owner = id = x = y = 0; }
 
     int id;
@@ -101,7 +98,7 @@ namespace visualizer
 
   struct tile: public Animatable
   {
-    tile( IRenderer *renderer ) : Animatable( renderer )
+    tile()
     { owner = id = x = y = numConnectedTiles = 0; connectedTo = NULL; mainBlob = false; }
 
     int id;
@@ -124,8 +121,6 @@ namespace visualizer
   
   struct background: public Animatable
   {
-    background( IRenderer *renderer ) : Animatable( renderer )
-    { }
     
     int mapWidth;
     int mapHeight;
@@ -138,8 +133,6 @@ namespace visualizer
   
   struct grid: public Animatable
   {
-    grid( IRenderer *renderer ) : Animatable( renderer )
-    { }
     
     int mapWidth;
     int mapHeight;
@@ -155,8 +148,6 @@ namespace visualizer
 
   struct scoreboard: public Animatable
   {
-    scoreboard( IRenderer* renderer ) : Animatable( renderer )
-    { }
 
     float x, y;
     
@@ -187,9 +178,8 @@ namespace visualizer
   
   struct ArenaWinner: public Animatable
   {
-    ArenaWinner( IRenderer* renderer, ITimeManager *tm, int num, string winner, string reason, int w, int h, bool wooly ) : Animatable( renderer )
+    ArenaWinner( int num, string winner, string reason, int w, int h, bool wooly )
     {
-      m_tm = tm;
       winnersName = winner;
       winningReason = reason;
       winnersIndex = num;
@@ -208,10 +198,7 @@ namespace visualizer
       return &m_arenaWinnerData;
     }
     
-    ITimeManager* timeManager() { return m_tm; }
-
     ArenaWinnerData m_arenaWinnerData;
-    ITimeManager *m_tm;
 
   };
 

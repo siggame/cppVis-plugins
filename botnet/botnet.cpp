@@ -8,8 +8,6 @@
 namespace visualizer
 {
 
-  Log errorLog( "botnetLog.log" );
-
   BotNet::BotNet()
   {
     m_game = 0;
@@ -22,18 +20,21 @@ namespace visualizer
   {
     terminate();
     wait();
-    animationEngine->registerFrameContainer( 0 );
+    animationEngine->registerGame( 0, 0 );
     delete m_timeline;
     delete m_game;
   } // BotNet::~BotNet()
 
-  LogRegex BotNet::logFileInfo()
-  {
-    LogRegex lr;
-    lr.regex = "Base";
-    lr.startSize = 1000;
+  PluginInfo BotNet::getPluginInfo()
+  {    
+    PluginInfo i;
+    i.searchLength = 1000;
+    i.gamelogRegexPattern = "Space";
+    i.returnFilename = false;
+    i.spectateMode = false;
+    i.pluginName = "MegaMinerAI8: BotNet Plugin";
 
-    return lr;
+    return i;
   } // BotNet::logFileInfo()
 
   void BotNet::loadGamelog( std::string gamelog )
@@ -52,7 +53,7 @@ namespace visualizer
 
 
     // Reset the animation engine.  
-    animationEngine->registerFrameContainer( 0 );
+    animationEngine->registerGame( 0, 0 );
     
     // Clean up any old games.
     delete m_game;
@@ -67,7 +68,6 @@ namespace visualizer
       delete m_timeline;
       m_game = 0;
       m_timeline = 0;
-      errorLog << gamelog;
       THROW
         (
         GameException,
@@ -80,7 +80,7 @@ namespace visualizer
     float h = m_game->states[ 0 ].height + 2.5f;
 
     renderer->setCamera( 0, 0, w, h );
-    renderer->setUnitSize( w, h );
+    renderer->setGridDimensions( w, h );
 
     resourceManager->loadResourceFile( "./plugins/botnet/textures.r" );
 
@@ -197,9 +197,9 @@ namespace visualizer
 
     size_t frameNum = 0;
 
-    SmartPointer<background> b = new background( renderer );
-    SmartPointer<grid> g = new grid( renderer );
-    SmartPointer<moveBoard> mb = new moveBoard( renderer );
+    SmartPointer<background> b = new background();
+    SmartPointer<grid> g = new grid();
+    SmartPointer<moveBoard> mb = new moveBoard();
     
     // offset for the score to be rendered at the top
     mb->offst = 2.5f;
@@ -265,7 +265,7 @@ namespace visualizer
         i++ 
         )
       {
-        tile* t = new tile( renderer );
+        tile* t = new tile();
         t->addKeyFrame( new StartAnim );
         t->id = i->second.id;
         t->x = i->second.x;
@@ -359,7 +359,7 @@ namespace visualizer
         i++
         )
       {
-        SmartPointer< base > b = new base( renderer );
+        SmartPointer< base > b = new base();
 
         b->addKeyFrame( new StartAnim );
         b->id = i->second.id;
@@ -375,8 +375,8 @@ namespace visualizer
       
 
       // BEGIN: Draw Scoreboard
-      SmartPointer< scoreboard >  score1 = new scoreboard( renderer );
-      SmartPointer< scoreboard > score2 = new scoreboard( renderer );
+      SmartPointer< scoreboard >  score1 = new scoreboard();
+      SmartPointer< scoreboard > score2 = new scoreboard();
 
       score1->score = m_game->states[ state ].players[ 0 ].byteDollars;
       score1->cycles = m_game->states[ state ].players[ 0 ].cycles;
@@ -449,7 +449,7 @@ namespace visualizer
 
               Combine &c = (Combine&)*(*j);
 
-              SmartPointer< virus > v = new virus( renderer );
+              SmartPointer< virus > v = new virus();
 
               v->addKeyFrame( new StartVirus( v ) );
 
@@ -505,7 +505,7 @@ namespace visualizer
           }
         }
         
-        SmartPointer< talker > b = new talker( renderer );
+        SmartPointer< talker > b = new talker();
 
         b->addKeyFrame( new StartAnim );
         b->player = p;
@@ -526,7 +526,7 @@ namespace visualizer
       {
         if( i->second.id == 0 )
           continue;
-        SmartPointer< virus > v = new virus( renderer );
+        SmartPointer< virus > v = new virus();
 
         v->addKeyFrame( new StartVirus( v ) );
         v->id = i->second.id;
@@ -617,8 +617,6 @@ namespace visualizer
       {
         ArenaWinner *aw = new ArenaWinner
         ( 
-            renderer,
-            timeManager,
             m_game->winner,
             m_game->states[0].players[ m_game->winner ].playerName,
             m_game->winReason,
@@ -647,7 +645,7 @@ namespace visualizer
       if( frameNum <= 1 )
       {
         timeManager->setTurn( 0 );
-        animationEngine->registerFrameContainer( m_timeline );
+        animationEngine->registerGame( this, m_timeline );
         timeManager->play();
         timeManager->setNumTurns( m_game->states.size() + isArenaMode );
       }

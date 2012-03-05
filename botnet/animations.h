@@ -14,7 +14,7 @@ namespace visualizer
   {
     public:
       StartAnim() {}
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -26,7 +26,7 @@ namespace visualizer
   class Appear: public Anim
   {
     public:
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       {
@@ -46,7 +46,7 @@ namespace visualizer
         m_mb = mb;
       }
 
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -65,7 +65,7 @@ namespace visualizer
         m_virus = v;
       }
 
-      void animate( const float& t, AnimData *d )
+      void animate( const float& t, AnimData *d, IGame* game )
       {
         VirusData* v = (VirusData*)d;
         v->x = m_virus->x;
@@ -97,7 +97,7 @@ namespace visualizer
         m_dampner = dampen(d);
       }
 
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -117,7 +117,7 @@ namespace visualizer
         m_dampner = dampen(d);
       }
 
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -135,7 +135,7 @@ namespace visualizer
       {
         m_dampner = dampen(d);
       }
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -154,7 +154,7 @@ namespace visualizer
       {
         m_dampner = dampen(d);
       }
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -168,7 +168,7 @@ namespace visualizer
   class LeftAnim: public Anim
   {
     public:
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -180,7 +180,7 @@ namespace visualizer
   class RightAnim: public Anim
   {
     public:
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
 
       float controlDuration() const
       { return 1; }
@@ -192,7 +192,7 @@ namespace visualizer
   class UpAnim: public Anim
   {
     public:
-    void animate( const float& t, AnimData *d );
+    void animate( const float& t, AnimData *d, IGame* game );
 
     float controlDuration() const
     { return 1; }
@@ -204,7 +204,7 @@ namespace visualizer
   class DownAnim: public Anim
   {
     public:
-    void animate( const float& t, AnimData *d );
+    void animate( const float& t, AnimData *d, IGame* game );
 
     float controlDuration() const
     { return 1; }
@@ -220,7 +220,7 @@ namespace visualizer
         m_talker = t;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -241,7 +241,7 @@ namespace visualizer
         m_virus = v;
       } // DrawVirus()
       
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -261,7 +261,7 @@ namespace visualizer
         m_base = b;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -281,7 +281,7 @@ namespace visualizer
         m_sb = sb;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -306,7 +306,7 @@ namespace visualizer
         currentBluScore = curBlu;
       }
       
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
       
       double oldRedScore, oldBluScore, currentRedScore, currentBluScore;
       
@@ -325,7 +325,7 @@ namespace visualizer
         tm = t;
       }
       
-      void animate( const float& t, AnimData *d );
+      void animate( const float& t, AnimData *d, IGame* game );
       
       ITimeManager *tm;
       
@@ -345,7 +345,7 @@ namespace visualizer
         m_tile = t;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -365,7 +365,7 @@ namespace visualizer
         m_background = b;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -385,7 +385,7 @@ namespace visualizer
         m_grid = g;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -407,7 +407,7 @@ namespace visualizer
         m_winSpeed = winSpeed;
       }
 
-      void animate( const float& t, AnimData* d );
+      void animate( const float& t, AnimData* d, IGame* game );
 
       float controlDuration() const
       { return 0; }
@@ -424,7 +424,7 @@ namespace visualizer
   class UpCollide : public Anim
   {
     public: 
-      void animate(const float& t, AnimData *d);
+      void animate(const float& t, AnimData *d, IGame* game );
       
       float controlDuration() const
       {return 1;}
@@ -436,7 +436,7 @@ namespace visualizer
   class DownCollide : public Anim
   {
     public:
-      void animate(const float& t, AnimData *d);
+      void animate(const float& t, AnimData *d, IGame* game );
       
       float controlDuration() const
       {return 1;}
@@ -447,7 +447,7 @@ namespace visualizer
   class LeftCollide : public Anim
   {
     public:
-      void animate(const float& t, AnimData *d);
+      void animate(const float& t, AnimData *d, IGame* game );
       
       float ControlDuration() const
       {return 1;}
@@ -458,7 +458,7 @@ namespace visualizer
   class RightCollide : public Anim
   {
     public:
-      void animate(const float& t, AnimData *d);
+      void animate(const float& t, AnimData *d, IGame* game );
       
       float controlDuration() const
       {return 1;}
